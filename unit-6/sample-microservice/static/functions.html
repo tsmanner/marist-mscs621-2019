@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hybrid Cloud Demo RESTful Service</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/stylesheets/style.css">
+    <script src="static/javascripts/jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <p>
+        Copy the following information from your IBM functions
+    </p>
+   
+    API-KEY: <input id="api_key" type="text"><br>
+    URL: <input id="url" type="text"><br>
+    Put your name: <input id="name" type="text"><br>
+    <button id="call_function">Call Function</button><br>
+
+    <hr>
+
+    Result: <textarea id="result" type="text"></textarea>
+  </body>
+</html>
+
+<script>
+jQuery(document).ready(function ($) {
+// add the routine later to add hybrid components.
+    $('#call_function').click(function(e) {
+        var data = {};
+        data['url'] = $('#url').val();
+        data['api_key'] = $('#api_key').val();
+        data['name'] = $('#name').val();
+
+        $.ajax({
+            type: "POST",
+            url: '/functions',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function( data, textStatus, jQxhr ) {
+                $('#result').append(JSON.stringify(data));
+            },
+            error: function( jqXhr, textStatus, errorThrown ) {
+                alert( errorThrown );
+            }
+        });
+
+        e.preventDefault();
+    });
+});
+</script>
