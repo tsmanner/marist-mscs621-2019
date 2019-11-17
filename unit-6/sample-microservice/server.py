@@ -53,10 +53,10 @@ HTTP_409_CONFLICT = 409
 ######################################################################
 # Error Handlers
 ######################################################################
-@app.errorhandler(DataValidationError)
-def request_validation_error(error):
-    """ Handles Value Errors from bad data """
-    return bad_request(error)
+# @app.errorhandler(DataValidationError)
+# def request_validation_error(error):
+#     """ Handles Value Errors from bad data """
+#     return bad_request(error)
 
 @app.errorhandler(400)
 def bad_request(error):

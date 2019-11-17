@@ -1,1 +1,6 @@
+notes
+
 .DS_Store
+
+venv/
+.venv/
